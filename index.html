@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mana Panduga | మన పండుగ - Rural Andhra Pradesh Festivals & Cultural Connect</title>
+  <meta name="description" content="Discover village festivals (Jataralu), temple celebrations, and traditional rural performing arts like Harikatha, Burrakatha, Kolatam, and Kuchipudi across Andhra Pradesh.">
+  <meta name="keywords" content="Mana Panduga, Grama Utsavam, AP Cultural Connect, Andhra Festivals, Jatara, Kolatam, Burrakatha, Harikatha, Kuchipudi, Andhra Rural Culture">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Mandali&family=Noto+Sans+Telugu:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-lang="en">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="#" class="logo-area" id="logoLink">
+        <div class="deepam-icon">
+          <div class="deepam-flame"></div>
+        </div>
+        <div class="logo-text">
+          <h1 id="logoHeading">MANA PANDUGA</h1>
+          <p id="logoSubheading">మన పండుగ • AP CULTURAL CONNECT</p>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#festivals" class="nav-link active" data-i18n="navFestivals"><i class="fa-solid fa-om"></i> Festivals & Jataras</a></li>
+        <li><a href="#calendarSection" class="nav-link" data-i18n="navCalendar"><i class="fa-regular fa-calendar-days"></i> Calendar</a></li>
+        <li><a href="#culturalArts" class="nav-link" data-i18n="navCulture"><i class="fa-solid fa-masks-theater"></i> Cultural Arts</a></li>
+        <li><a href="#gallerySection" class="nav-link" data-i18n="navGallery"><i class="fa-solid fa-photo-film"></i> Memories</a></li>
+      </ul>
+
+      <div class="header-actions">
+        <!-- Audio Ambient Player Toggle -->
+        <button class="btn-icon" id="audioToggleBtn" title="Play Traditional Temple Nadaswaram & Bells">
+          <i class="fa-solid fa-volume-xmark" id="audioIcon"></i>
+        </button>
+
+        <!-- Notification Bell -->
+        <button class="btn-icon" id="notificationBtn" title="Festival Alerts & Reminders">
+          <i class="fa-regular fa-bell"></i>
+          <span class="badge-dot" id="unreadBadge"></span>
+        </button>
+
+        <!-- Language Switcher -->
+        <div class="lang-switch">
+          <button class="lang-btn active" id="langEnBtn" onclick="setLanguage('en')">EN</button>
+          <button class="lang-btn" id="langTeBtn" onclick="setLanguage('te')">తెలుగు</button>
+        </div>
+
+        <!-- Submit Event (Volunteer) -->
+        <button class="btn btn-primary" id="openVolunteerModalBtn">
+          <i class="fa-solid fa-plus-circle"></i> <span data-i18n="btnSubmitFestival">Submit Festival</span>
+        </button>
+
+        <!-- Admin Desk Toggle -->
+        <button class="btn btn-outline" id="openAdminDrawerBtn" title="Admin Review Dashboard">
+          <i class="fa-solid fa-shield-halved"></i> <span data-i18n="btnAdmin">Admin</span>
+          <span id="adminPendingCount" style="background: var(--temple-crimson); padding: 1px 6px; border-radius: 10px; font-size: 0.72rem; margin-left: 4px;">2</span>
+        </button>
+
+        <!-- Mobile Nav Toggle -->
+        <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Toggle Navigation">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Daily Telugu Panchangam & Tithi Auspicious Strip -->
+  <aside class="panchangam-bar" aria-label="Telugu Panchangam">
+    <div class="container panchangam-content">
+      <div class="panchangam-title">
+        <i class="fa-solid fa-sun"></i> <span data-i18n="panchangamHeading">Today's Telugu Panchangam</span>
+      </div>
+      <div class="panchangam-items">
+        <div class="panchang-entry"><i class="fa-regular fa-moon"></i> <span data-i18n="tithiLabel">Tithi:</span> <strong id="panchangTithi">Shukla Paksha Dashami</strong></div>
+        <div class="panchang-entry"><i class="fa-solid fa-star"></i> <span data-i18n="nakshatraLabel">Nakshatram:</span> <strong id="panchangNakshatra">Rohini</strong></div>
+        <div class="panchang-entry"><i class="fa-solid fa-clock"></i> <span data-i18n="rahuLabel">Rahu Kalam:</span> <strong id="panchangRahu">04:30 PM - 06:00 PM</strong></div>
+        <div class="panchang-entry"><i class="fa-solid fa-bell"></i> <span data-i18n="utsavamTodayLabel">Special Event:</span> <strong id="panchangUtsavam" style="color: var(--primary-gold-light);">Sirimanotsavam Prabhalu Active</strong></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="toranam-garland"></div>
+    <div class="container hero-grid">
+      <div class="hero-text-content">
+        <div class="hero-badge">
+          <i class="fa-solid fa-sparkles"></i> <span data-i18n="heroBadge">Preserving Andhra's Rural Soul & Heritage</span>
+        </div>
+        <h2 class="hero-title font-title" id="heroTitle">
+          Celebrate the Rich <span class="accent">Grama Utsavalu</span> & Temple Jataralu
+        </h2>
+        <p class="hero-subtitle" id="heroSubtitle">
+          Discover traditional village fairs, Harikatha, Burrakatha, Kolatam, and sacred temple gatherings across all 26 districts of Andhra Pradesh.
+        </p>
+        
+        <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+          <a href="#festivals" class="btn btn-primary" style="padding: 12px 24px; font-size: 1rem;">
+            <i class="fa-solid fa-compass"></i> <span data-i18n="heroExploreBtn">Explore Village Festivals</span>
+          </a>
+          <a href="#culturalArts" class="btn btn-outline" style="padding: 12px 22px; font-size: 1rem;">
+            <i class="fa-solid fa-music"></i> <span data-i18n="heroCultureBtn">Cultural Programs</span>
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-num" id="statDistricts">26</div>
+            <div class="stat-label" data-i18n="statDistrictsLabel">AP Districts Covered</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num" id="statFestivals">650+</div>
+            <div class="stat-label" data-i18n="statFestivalsLabel">Village Jataralu & Fairs</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num" id="statArtistes">1,200+</div>
+            <div class="stat-label" data-i18n="statArtistesLabel">Folk Artistes & Troupes</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Spotlight Live Card -->
+      <div class="spotlight-card">
+        <div class="spotlight-header">
+          <span class="live-pill"><span class="live-dot"></span> <span data-i18n="spotlightFeatured">Featured Mega Jatara</span></span>
+          <span style="font-size: 0.8rem; color: var(--primary-gold); font-weight: 700;"><i class="fa-solid fa-fire"></i> Annual Utsavam</span>
+        </div>
+        <h3 class="spotlight-title font-title" id="spotlightTitle">Sri Sirimanotsavam Jatara</h3>
+        <div class="spotlight-location">
+          <i class="fa-solid fa-location-dot"></i> <span id="spotlightLoc">Pydivamba Temple, Vizianagaram Old Town</span>
+        </div>
+
+        <!-- Live Countdown -->
+        <div class="countdown-box">
+          <div class="countdown-label" data-i18n="countdownLabel">Grand Procession Commences In</div>
+          <div class="countdown-grid">
+            <div>
+              <div class="countdown-val" id="cdDays">04</div>
+              <div class="countdown-unit" data-i18n="unitDays">Days</div>
+            </div>
+            <div>
+              <div class="countdown-val" id="cdHours">14</div>
+              <div class="countdown-unit" data-i18n="unitHours">Hours</div>
+            </div>
+            <div>
+              <div class="countdown-val" id="cdMins">32</div>
+              <div class="countdown-unit" data-i18n="unitMins">Mins</div>
+            </div>
+            <div>
+              <div class="countdown-val" id="cdSecs">45</div>
+              <div class="countdown-unit" data-i18n="unitSecs">Secs</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="spotlight-features">
+          <span class="feature-tag"><i class="fa-solid fa-drum"></i> Dappu Nrityam</span>
+          <span class="feature-tag"><i class="fa-solid fa-person-burst"></i> Tappeta Gullu</span>
+          <span class="feature-tag"><i class="fa-solid fa-bowl-rice"></i> Maha Annadanam</span>
+          <span class="feature-tag"><i class="fa-solid fa-street-view"></i> 3.5 Lakh Devotees</span>
+        </div>
+
+        <button class="btn btn-crimson" style="width: 100%; justify-content: center;" onclick="viewEventDetails(1)">
+          <i class="fa-solid fa-circle-info"></i> <span data-i18n="btnViewFullSchedule">View Full Program Itinerary</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content: Festivals & Village-wise Search -->
+  <section class="section" id="festivals">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="tagRadar">Village Festival Radar</span>
+        <h2 class="section-title font-title" data-i18n="headingFestivals">Search Andhra Rural Festivals & Jataras</h2>
+        <p class="section-desc" data-i18n="descFestivals">Filter across all districts, mandals, and villages to discover sacred temple thirunallu, folk dance programs, and rural harvest celebrations.</p>
+      </div>
+
+      <!-- Filter Card -->
+      <div class="filter-card">
+        <div class="filter-grid">
+          <!-- Text Search -->
+          <div class="input-group">
+            <i class="fa-solid fa-magnifying-glass input-icon"></i>
+            <input type="text" id="searchInput" class="form-control" placeholder="Search by festival, deity, or village..." oninput="handleFilterChange()">
+          </div>
+
+          <!-- District Selector -->
+          <div class="input-group">
+            <i class="fa-solid fa-map-location-dot input-icon"></i>
+            <select id="districtFilter" class="form-control" onchange="handleDistrictChange()">
+              <option value="ALL">All 26 Districts (అన్ని జిల్లాలు)</option>
+              <!-- Populated dynamically via JS -->
+            </select>
+          </div>
+
+          <!-- Mandal Selector -->
+          <div class="input-group">
+            <i class="fa-solid fa-tree-city input-icon"></i>
+            <select id="mandalFilter" class="form-control" onchange="handleFilterChange()">
+              <option value="ALL">All Mandals (అన్ని మండలాలు)</option>
+            </select>
+          </div>
+
+          <!-- View Switcher -->
+          <div class="view-switcher">
+            <button class="view-btn active" id="btnViewGrid" onclick="switchView('grid')">
+              <i class="fa-solid fa-grip"></i> <span data-i18n="viewGrid">Grid</span>
+            </button>
+            <button class="view-btn" id="btnViewCalendar" onclick="switchView('calendar')">
+              <i class="fa-solid fa-calendar-week"></i> <span data-i18n="viewCalendar">Calendar</span>
+            </button>
+            <button class="view-btn" id="btnViewTimeline" onclick="switchView('timeline')">
+              <i class="fa-solid fa-timeline"></i> <span data-i18n="viewTimeline">Timeline</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Category Pills -->
+        <div class="category-pills" id="categoryPills">
+          <button class="category-pill active" data-cat="ALL" onclick="setCategory('ALL')"><i class="fa-solid fa-layer-group"></i> <span data-i18n="catAll">All Events</span></button>
+          <button class="category-pill" data-cat="JATARA" onclick="setCategory('JATARA')"><i class="fa-solid fa-place-of-worship"></i> <span data-i18n="catJatara">Temple Jataralu</span></button>
+          <button class="category-pill" data-cat="KOLATAM" onclick="setCategory('KOLATAM')"><i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="catKolatam">Kolatam & Folk Dance</span></button>
+          <button class="category-pill" data-cat="HARIKATHA" onclick="setCategory('HARIKATHA')"><i class="fa-solid fa-microphone-lines"></i> <span data-i18n="catHarikatha">Harikatha & Burrakatha</span></button>
+          <button class="category-pill" data-cat="KUCHIPUDI" onclick="setCategory('KUCHIPUDI')"><i class="fa-solid fa-masks-theater"></i> <span data-i18n="catKuchipudi">Kuchipudi & Natakam</span></button>
+          <button class="category-pill" data-cat="PRABHALU" onclick="setCategory('PRABHALU')"><i class="fa-solid fa-fire"></i> <span data-i18n="catPrabha">Prabha & Rathotsavam</span></button>
+        </div>
+      </div>
+
+      <!-- Active Count & Results Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <p style="color: var(--text-muted); font-size: 0.9rem;">
+          <span data-i18n="showingEvents">Showing</span> <strong id="resultsCount" style="color: var(--primary-gold);">0</strong> <span data-i18n="ruralPrograms">rural programs</span>
+        </p>
+        <button class="btn btn-outline" style="font-size: 0.8rem; padding: 4px 12px;" onclick="resetFilters()">
+          <i class="fa-solid fa-arrow-rotate-left"></i> <span data-i18n="resetFilters">Reset Filters</span>
+        </button>
+      </div>
+
+      <!-- VIEW 1: Grid Cards Container -->
+      <div class="festival-grid" id="festivalGrid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+
+      <!-- VIEW 2: Interactive Calendar View Container -->
+      <div class="calendar-wrapper" id="calendarView" style="display: none;">
+        <div class="calendar-header-nav">
+          <button class="btn btn-outline btn-icon" onclick="changeMonth(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+          <h3 class="calendar-month-title font-title" id="calendarMonthLabel">October 2026</h3>
+          <button class="btn btn-outline btn-icon" onclick="changeMonth(1)"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+        <div class="calendar-grid-header">
+          <span>SUN</span><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span>
+        </div>
+        <div class="calendar-days-grid" id="calendarDays">
+          <!-- Calendar cells rendered via JS -->
+        </div>
+      </div>
+
+      <!-- VIEW 3: Chronological Timeline Container -->
+      <div class="timeline-container" id="timelineView" style="display: none;">
+        <!-- Timeline items rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Cultural Programs Spotlight (Samskruthi Vibhaagam) -->
+  <section class="section section-alt" id="culturalArts">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="tagCulture">Andhra Samskruthi Vibhaagam</span>
+        <h2 class="section-title font-title" data-i18n="headingCulture">Rural Performing Arts & Heritage</h2>
+        <p class="section-desc" data-i18n="descCulture">Explore the vibrant folk narratives, sacred stick dances, ballad singing, and classical traditions that have enriched village life for generations.</p>
+      </div>
+
+      <!-- Cultural Tabs -->
+      <div class="cultural-tabs" id="culturalTabs">
+        <button class="cultural-tab-btn active" onclick="showCulturalArt('kolatam')"><i class="fa-solid fa-wand-magic-sparkles"></i> Kolatam (కోలాటం)</button>
+        <button class="cultural-tab-btn" onclick="showCulturalArt('burrakatha')"><i class="fa-solid fa-guitar"></i> Burrakatha (బుర్రకథ)</button>
+        <button class="cultural-tab-btn" onclick="showCulturalArt('harikatha')"><i class="fa-solid fa-hands-praying"></i> Harikatha (హరికథ)</button>
+        <button class="cultural-tab-btn" onclick="showCulturalArt('kuchipudi')"><i class="fa-solid fa-masks-theater"></i> Kuchipudi (కూచిపూడి)</button>
+        <button class="cultural-tab-btn" onclick="showCulturalArt('folktraditions')"><i class="fa-solid fa-drum"></i> Dappu & Tappeta Gullu</button>
+      </div>
+
+      <!-- Cultural Art Presentation Card -->
+      <div class="cultural-display-card" id="culturalDisplayArea">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Photo & Video Memories Gallery -->
+  <section class="section" id="gallerySection">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="tagGallery">Cultural Visual Archives</span>
+        <h2 class="section-title font-title" data-i18n="headingGallery">Village Festival Photo & Reel Gallery</h2>
+        <p class="section-desc" data-i18n="descGallery">Glimpses of Kotappakonda Prabhalu, Sankranti Gangireddulu, Haridasu keerthanas, and village temple rathotsavams.</p>
+      </div>
+
+      <!-- Gallery Filter -->
+      <div class="gallery-filter-bar">
+        <button class="category-pill active" onclick="filterGallery('ALL')"><span data-i18n="allMemories">All Memories</span></button>
+        <button class="category-pill" onclick="filterGallery('sankranti')">Sankranti Sambaralu</button>
+        <button class="category-pill" onclick="filterGallery('jatara')">Grand Jataras</button>
+        <button class="category-pill" onclick="filterGallery('kolatam')">Kolatam Troupes</button>
+        <button class="category-pill" onclick="filterGallery('prabhalu')">Tall Prabhalu</button>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Gallery cards populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Village Volunteer Banner & Workflow -->
+  <section class="section workflow-section">
+    <div class="container">
+      <div class="volunteer-banner">
+        <div class="volunteer-text">
+          <h3 class="font-title" data-i18n="volBannerTitle">Are you a Village Volunteer or Temple Organizer?</h3>
+          <p data-i18n="volBannerDesc">Help keep your village heritage alive! Submit upcoming temple Jataralu, Kolatam performances, Harikatha schedules, or Annadanam details to be published across Andhra Pradesh.</p>
+        </div>
+        <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+          <button class="btn btn-primary" onclick="openVolunteerModal()" style="padding: 14px 26px; font-size: 1rem;">
+            <i class="fa-solid fa-file-circle-plus"></i> <span data-i18n="btnSubmitVillageEvent">Submit Village Event</span>
+          </button>
+          <button class="btn btn-outline" onclick="openAdminDrawer()" style="padding: 14px 22px; font-size: 1rem;">
+            <i class="fa-solid fa-clipboard-check"></i> <span data-i18n="btnReviewDesk">Admin Verification Desk</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <div class="logo-area" style="margin-bottom: 12px;">
+            <div class="deepam-icon" style="width: 36px; height: 36px;">
+              <div class="deepam-flame" style="width: 12px; height: 18px;"></div>
+            </div>
+            <div class="logo-text">
+              <h2 style="font-size: 1.25rem; color: #ffffff;">MANA PANDUGA</h2>
+              <p style="font-size: 0.7rem; color: var(--primary-gold);">మన పండుగ • గ్రామ ఉత్సవాలు</p>
+            </div>
+          </div>
+          <p data-i18n="footerAbout">A digital preservation and cultural connect platform for rural Andhra Pradesh, celebrating age-old temple fairs, sacred folklore, and village traditions.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footerFairsHeading">Popular Jataras</h4>
+          <ul class="footer-links">
+            <li><a href="#" onclick="quickSearch('Sirimanotsavam')">Sirimanotsavam (Vizianagaram)</a></li>
+            <li><a href="#" onclick="quickSearch('Kotappakonda')">Kotappakonda Thirunallu (Palnadu)</a></li>
+            <li><a href="#" onclick="quickSearch('Ganga Jatara')">Tirupati Ganga Jatara</a></li>
+            <li><a href="#" onclick="quickSearch('Poleramma')">Venkatagiri Poleramma Jatara</a></li>
+            <li><a href="#" onclick="quickSearch('Rottela Panduga')">Bara Shaheed Dargah Rottela Panduga</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footerCultureHeading">Cultural Forms</h4>
+          <ul class="footer-links">
+            <li><a href="#" onclick="showCulturalArt('kolatam')">Kolatam Stick Dance</a></li>
+            <li><a href="#" onclick="showCulturalArt('burrakatha')">Burrakatha Ballad</a></li>
+            <li><a href="#" onclick="showCulturalArt('harikatha')">Harikatha Devotional Discourse</a></li>
+            <li><a href="#" onclick="showCulturalArt('kuchipudi')">Kuchipudi Classical Dance</a></li>
+            <li><a href="#" onclick="showCulturalArt('folktraditions')">Tolu Bommalata Puppetry</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footerRegionsHeading">AP Cultural Regions</h4>
+          <ul class="footer-links">
+            <li><a href="#" onclick="filterByRegion('coastal')">Coastal Andhra (కోస్తా ఆంధ్ర)</a></li>
+            <li><a href="#" onclick="filterByRegion('rayalaseema')">Rayalaseema (రాయలసీమ)</a></li>
+            <li><a href="#" onclick="filterByRegion('uttarandhra')">Uttarandhra (ఉత్తరాంధ్ర)</a></li>
+            <li><a href="#" onclick="filterByRegion('godavari')">Konaseema & Godavari Belt</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Mana Panduga (మన పండుగ). Dedicated to the Cultural Heritage of Rural Andhra Pradesh.</p>
+        <p><i class="fa-solid fa-heart" style="color: var(--temple-crimson);"></i> Made for Village Volunteers & Devotees</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODALS & DRAWERS
+       ========================================================================== -->
+
+  <!-- Modal 1: Village Volunteer Event Submission -->
+  <div class="modal-backdrop" id="volunteerModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-hands-holding-circle"></i> <span data-i18n="modalVolTitle">Submit Village Festival Details</span></h3>
+        <button class="close-btn" onclick="closeVolunteerModal()">&times;</button>
+      </div>
+      <form id="volunteerForm" onsubmit="handleVolunteerSubmit(event)">
+        <div class="modal-body">
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;">
+            Submitted festivals will be reviewed by district cultural coordinators before appearing live on the platform.
+          </p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label><span data-i18n="formFestName">Festival / Jatara Name</span> *</label>
+              <input type="text" id="vFestName" class="form-control" placeholder="e.g. Sri Poleramma Ammavari Jatara" required>
+            </div>
+            <div class="form-group">
+              <label><span data-i18n="formCategory">Category</span> *</label>
+              <select id="vCategory" class="form-control" required>
+                <option value="JATARA">Temple Jatara (గ్రామ జాతర)</option>
+                <option value="KOLATAM">Kolatam & Folk Dance (కోలాటం)</option>
+                <option value="HARIKATHA">Harikatha / Burrakatha (హరికథ / బుర్రకథ)</option>
+                <option value="KUCHIPUDI">Kuchipudi & Natakam (కూచిపూడి)</option>
+                <option value="PRABHALU">Prabha & Rathotsavam (ప్రభల తీర్థం)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label><span data-i18n="formDistrict">District</span> *</label>
+              <select id="vDistrict" class="form-control" required onchange="handleVolunteerDistrictChange()">
+                <option value="">Select District</option>
+                <!-- Populated via JS -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label><span data-i18n="formMandal">Mandal</span> *</label>
+              <input type="text" id="vMandal" class="form-control" placeholder="Enter Mandal name" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label><span data-i18n="formVillage">Village / Gramam</span> *</label>
+              <input type="text" id="vVillage" class="form-control" placeholder="Enter Village name" required>
+            </div>
+            <div class="form-group">
+              <label><span data-i18n="formVenue">Temple / Venue</span> *</label>
+              <input type="text" id="vVenue" class="form-control" placeholder="e.g. Grama Chavadi / Temple Complex" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label><span data-i18n="formStartDate">Start Date</span> *</label>
+              <input type="date" id="vStartDate" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label><span data-i18n="formEndDate">End Date</span> *</label>
+              <input type="date" id="vEndDate" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label><span data-i18n="formSchedule">Cultural Programs & Schedule</span> *</label>
+            <textarea id="vSchedule" class="form-control" placeholder="e.g. 6:00 PM: Grama Uregimpu, 8:00 PM: Harikatha by Sarma troupe, 10:00 PM: Kolatam competition" required></textarea>
+            <small>Mention program timings, artiste names, and Annadanam schedules.</small>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label><span data-i18n="formOrganizer">Volunteer / Organizer Name</span> *</label>
+              <input type="text" id="vOrganizer" class="form-control" placeholder="Your Full Name" required>
+            </div>
+            <div class="form-group">
+              <label><span data-i18n="formPhone">Contact Phone Number</span> *</label>
+              <input type="tel" id="vPhone" class="form-control" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeVolunteerModal()"><span data-i18n="btnCancel">Cancel</span></button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> <span data-i18n="btnSubmitForReview">Submit for Admin Approval</span></button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 2: Event Details Full View -->
+  <div class="modal-backdrop" id="eventDetailsModal">
+    <div class="modal-content" style="max-width: 750px;">
+      <div class="modal-header">
+        <h3 id="detailModalTitle"><i class="fa-solid fa-om"></i> Festival Itinerary</h3>
+        <button class="close-btn" onclick="closeEventDetailsModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="detailModalBody">
+        <!-- Rendered dynamically -->
+      </div>
+      <div class="modal-footer" id="detailModalFooter">
+        <!-- Buttons added dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Media Lightbox -->
+  <div class="modal-backdrop" id="lightboxModal">
+    <div class="modal-content" style="max-width: 850px; background: #000000; border: 1px solid var(--primary-gold);">
+      <div class="modal-header" style="border-bottom: 1px solid #333;">
+        <h3 id="lightboxTitle" style="color: var(--primary-gold-light); font-size: 1.1rem;">Cultural Photo</h3>
+        <button class="close-btn" onclick="closeLightbox()">&times;</button>
+      </div>
+      <div class="modal-body" style="padding: 10px; text-align: center;">
+        <img id="lightboxImg" src="" alt="Heritage Image" style="max-width: 100%; max-height: 70vh; border-radius: var(--radius-sm); object-fit: contain;">
+        <p id="lightboxCaption" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Drawer 1: Notification Tray -->
+  <div class="drawer" id="notificationDrawer">
+    <div class="drawer-header">
+      <h3 style="color: var(--primary-gold); font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
+        <i class="fa-regular fa-bell"></i> <span data-i18n="notifHeader">Alerts & Reminders</span>
+      </h3>
+      <button class="close-btn" onclick="closeNotificationDrawer()">&times;</button>
+    </div>
+    <div class="drawer-body" id="notificationList">
+      <!-- Notification items rendered via JS -->
+    </div>
+  </div>
+
+  <!-- Drawer 2: Admin Approval Desk -->
+  <div class="drawer" id="adminDrawer" style="max-width: 480px;">
+    <div class="drawer-header">
+      <h3 style="color: var(--primary-gold); font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
+        <i class="fa-solid fa-shield-halved"></i> <span data-i18n="adminDeskHeader">Admin Verification Desk</span>
+      </h3>
+      <button class="close-btn" onclick="closeAdminDrawer()">&times;</button>
+    </div>
+    <div class="drawer-body">
+      <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 15px;">
+        Review village volunteer festival submissions. Approved events automatically update the live calendar and notification feed.
+      </p>
+      <div id="adminSubmissionsList">
+        <!-- Admin approval items rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Application Script -->
+  <script src="app.js"></script>
+</body>
+</html>
