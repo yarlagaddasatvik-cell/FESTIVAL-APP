@@ -1,5 +1,5 @@
 /**
- * Mana Panduga (మన పండుగ) - AP Cultural Connect & Rural Festivals
+ * Village Festivals AP (గ్రామ పండుగలు) - AP Cultural Connect & Rural Festivals
  * Core Application Engine
  */
 
@@ -1206,9 +1206,9 @@ function downloadIcsCalendar(id) {
 
   const icsContent = `BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Mana Panduga AP Cultural Connect//EN
+PRODID:-//Village Festivals AP Cultural Connect//EN
 BEGIN:VEVENT
-UID:manapanduga-${ev.id}@andhraheritage.org
+UID:villagefestivalsap-${ev.id}@andhraheritage.org
 DTSTAMP:${startFormatted}
 DTSTART:${startFormatted}
 DTEND:${endFormatted}
@@ -1223,7 +1223,7 @@ END:VCALENDAR`;
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `ManaPanduga_${ev.id}_${ev.village}.ics`;
+  a.download = `VillageFestivalsAP_${ev.id}_${ev.village}.ics`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -1237,7 +1237,7 @@ function shareOnWhatsApp(id) {
   const ev = FESTIVALS_DATABASE.find((e) => e.id === id);
   if (!ev) return;
 
-  const text = `🎉 *${ev.titleEn} (${ev.titleTe})*\n📅 Dates: ${ev.startDate} to ${ev.endDate}\n📍 Venue: ${ev.venue}, ${ev.village}, ${ev.districtEn}\n🙏 Join with family for cultural programs & Annadanam!\nDiscover more on *Mana Panduga*: https://manapanduga.ap.gov.in`;
+  const text = `🎉 *${ev.titleEn} (${ev.titleTe})*\n📅 Dates: ${ev.startDate} to ${ev.endDate}\n📍 Venue: ${ev.venue}, ${ev.village}, ${ev.districtEn}\n🙏 Join with family for cultural programs & Annadanam!\nDiscover more on *Village Festivals AP*: https://villagefestivals.ap.gov.in`;
   window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, "_blank");
 }
 
